@@ -1,0 +1,265 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-inter), sans-serif;
+  --font-display: var(--font-space-grotesk), sans-serif;
+  
+  --color-brand-cyan: #06b6d4;
+  --color-brand-blue: #3b82f6;
+  --color-brand-purple: #8b5cf6;
+  --color-bg-dark: #070a13;
+  --color-bg-light: #f8fafc;
+}
+
+:root {
+  --font-inter: 'Inter', sans-serif;
+  --font-space-grotesk: 'Space Grotesk', sans-serif;
+  
+  --background: #f8fafc;
+  --foreground: #0f172a;
+  
+  --glass-bg: rgba(255, 255, 255, 0.45);
+  --glass-border: rgba(15, 23, 42, 0.08);
+  --glass-glow: rgba(59, 130, 246, 0.1);
+  --sidebar-bg: rgba(255, 255, 255, 0.7);
+}
+
+.dark {
+  --background: #070a13;
+  --foreground: #f8fafc;
+  
+  --glass-bg: rgba(15, 23, 42, 0.45);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-glow: rgba(6, 182, 212, 0.15);
+  --sidebar-bg: rgba(10, 15, 30, 0.75);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter);
+  transition: background-color 0.4s ease, color 0.4s ease;
+  overflow-x: hidden;
+}
+
+/* High-Contrast Premium Inputs & Normalization */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea,
+select {
+  color: var(--foreground) !important;
+  font-family: inherit;
+  background-color: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dark input[type="text"],
+.dark input[type="email"],
+.dark input[type="password"],
+.dark textarea,
+.dark select {
+  background-color: rgba(10, 15, 30, 0.6) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  color: #f8fafc !important;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+textarea:focus,
+select:focus {
+  border-color: #06b6d4 !important;
+  box-shadow: 0 0 0 2px rgba(6, 182, 212, 0.15) !important;
+  outline: none;
+}
+
+/* Custom placeholder colors for text input visibility */
+input::placeholder,
+textarea::placeholder {
+  color: #94a3b8;
+}
+
+.dark input::placeholder,
+.dark textarea::placeholder {
+  color: #64748b;
+}
+
+/* Custom select dropdown options styling */
+select option {
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+
+/* Liquid Glass Cards */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.04);
+}
+
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.03);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(6, 182, 212, 0.3);
+  box-shadow: 0 12px 30px 0 var(--glass-glow);
+}
+
+/* Apple Liquid Glass Navbar */
+.glass-navbar {
+  background: rgba(var(--background), 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--glass-border);
+  transition: all 0.3s ease;
+}
+
+/* Ambient Aurora Overlays */
+.aurora-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.aurora {
+  position: absolute;
+  filter: blur(100px);
+  opacity: 0.25;
+  border-radius: 50%;
+  mix-blend-mode: screen;
+  animation: aurora-float 20s infinite alternate;
+}
+
+.dark .aurora {
+  opacity: 0.35;
+}
+
+.aurora-1 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, var(--color-brand-cyan) 0%, transparent 70%);
+  top: -10%;
+  right: -5%;
+  animation-delay: 0s;
+}
+
+.aurora-2 {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, var(--color-brand-blue) 0%, transparent 70%);
+  bottom: -10%;
+  left: -5%;
+  animation-delay: -5s;
+}
+
+.aurora-3 {
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle, var(--color-brand-purple) 0%, transparent 70%);
+  top: 40%;
+  left: 30%;
+  animation-delay: -10s;
+}
+
+@keyframes aurora-float {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(5%, 10%) scale(1.1);
+  }
+  100% {
+    transform: translate(-5%, -5%) scale(0.9);
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(156, 163, 175, 0.3);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(156, 163, 175, 0.5);
+}
+
+/* Page Break utilities for A4 Printing */
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-area {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+  .page-break {
+    page-break-before: always;
+  }
+  @page {
+    size: A4;
+    margin: 15mm;
+  }
+}
+
+/* Text glow / border glow */
+.text-glow {
+  text-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
+}
+
+.border-glow {
+  box-shadow: 0 0 15px rgba(37, 99, 235, 0.2);
+}
+
+/* Override Tailwind v4 oklch colors inside the A4 sheet preview to resolve html2canvas color parse crashes */
+#resume-a4-sheet {
+  --color-slate-50: #f8fafc;
+  --color-slate-100: #f1f5f9;
+  --color-slate-200: #e2e8f0;
+  --color-slate-250: #d1dbe8;
+  --color-slate-300: #cbd5e1;
+  --color-slate-400: #94a3b8;
+  --color-slate-450: #7e91a9;
+  --color-slate-500: #64748b;
+  --color-slate-600: #475569;
+  --color-slate-650: #3b4a5f;
+  --color-slate-700: #334155;
+  --color-slate-750: #253245;
+  --color-slate-800: #1e293b;
+  --color-slate-850: #141e2c;
+  --color-slate-900: #0f172a;
+  --color-slate-950: #020617;
+}
